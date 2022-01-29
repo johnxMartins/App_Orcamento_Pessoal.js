@@ -70,7 +70,52 @@ class Bd {
     }
 
     pesquisar(despesa) {
+
+        let despesasFiltradas = Array();
+
+        this.recuperarTodosRegistros();
+        
+        console.log(despesasFiltradas);
         console.log(despesa);
+
+        //ano
+        if (despesa.ano != '') {
+            console.log('filtro ano');
+            despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano);
+            
+        }
+
+        //mes
+        if (despesa.mes != '') {
+            console.log('filtro mes');
+            despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes);
+            
+        }
+
+        //dia
+        if (despesa.dia != '') {
+            console.log('filtro dia');
+            despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia);
+        }
+
+        //tipo
+        if (despesa.tipo != '') {
+            console.log('filtro tipo');
+            despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo);
+        }
+
+        //descricao
+        if (despesa.descricao != '') {
+            console.log('filtro descriçao');
+            despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao);
+        }
+
+        //valor
+        if (despesa.valor != '') {
+            console.log('filtro valor');
+            despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor);
+        }
+
     }
 }
 
