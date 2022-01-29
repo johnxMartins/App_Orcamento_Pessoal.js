@@ -9,6 +9,33 @@ class Despesa {
     }
 }
 
+class Bd {
+
+    constructor() {
+        let id = localStorage.getItem('id');
+        
+        if (id === null) {
+            localStorage.setItem('id', 0);
+        }
+    }
+
+    getProximoId() {
+        let proximoId = localStorage.getItem('id'); //null
+        return parseInt(proximoId) + 1;
+    }
+
+    gravar(d) { //recebendo objeto literal dentro da função
+
+        let id = this.getProximoId();
+
+        localStorage.setItem(id, JSON.stringify(d));  //E precisamos transformar esse objeto em uma notação JSON 
+                    //A função setItem contem um protocolo que vai abrir uma comunicação com o localStorage(Encaminhando um JSON)
+
+        localStorage.setItem('id', id);
+    }              
+}
+
+let bd = new Bd();
 
 function cadastrarDespesa() {
 
@@ -30,9 +57,6 @@ function cadastrarDespesa() {
         valor.value
     )
 
-    gravar(despesa);
+    bd.gravar(despesa);
 }
 
-function gravar(d) { //recebendo objeto literal dentro da função
-    localStorage.setItem('despesa', JSON.stringify(d));  //E precisamos transformar esse objeto em uma notação JSON 
-}              //A função setItem contem um protocolo que vai abrir uma comunicação com o localStorage(Encaminhando um JSON)
