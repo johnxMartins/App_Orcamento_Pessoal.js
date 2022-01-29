@@ -121,5 +121,51 @@ function carregaListaDespesas() {
 
     despesas = bd.recuperarTodosRegistros();
 
-    console.log(despesas);
+    //selecionando o elemento tbody da tabela
+    let listaDespesas = document.getElementById('listaDespesas');
+    
+    /*
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> 
+    </tr>    
+    */
+
+    //percorrer o array despesas, listando cada despesa de forma dinamica 
+    despesas.forEach(function(d) {
+        
+        //console.log(d);
+
+        //criando a linha (tr)
+        let linha = listaDespesas.insertRow();
+        
+        //criar as colunas(td)
+        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`;
+        linha.insertCell(1).innerHTML = d.tipo;
+
+        //ajustar o tipo
+        switch(parse(d.tipo)) {
+            case '1': d.tipo = 'Alimentação'
+                break
+
+            case '2': d.tipo = 'Educação'
+                break
+
+            case '3': d.tipo = 'Lazer'
+                break
+
+            case '4': d.tipo = 'Saúde'
+                break
+
+            case '5': d.tipo = 'Transporte'
+                break
+        }
+        
+        linha.insertCell(1).innerHTML = d.tipo;
+
+        linha.insertCell(2).innerHTML = d.descricao;
+        linha.insertCell(3).innerHTML = d.valor;
+    })
 }
