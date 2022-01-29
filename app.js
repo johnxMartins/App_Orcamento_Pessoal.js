@@ -42,7 +42,32 @@ class Bd {
                     //A função setItem contem um protocolo que vai abrir uma comunicação com o localStorage(Encaminhando um JSON)
 
         localStorage.setItem('id', id);
-    }              
+    }
+    
+    recuperarTodosRegistros() {
+
+        //array de despesas
+        let despesas = Array();
+
+        let id = localStorage.getItem('id');
+        
+        //recuperar todas despesas cadastradas em localStorage
+        for(let i = 1; i <= id; i++) {
+
+            //recuperar a despesa
+            let despesa = JSON.parse(localStorage.getItem(i));
+
+            //existe a possibilidade de haver indices que foram pulados/removidos
+            //nestes casos nó vamos pular esses indices
+            if (despesa === null) {
+                continue;
+            }
+
+            despesas.push(despesa);
+        }
+
+        return despesas;
+    }
 }
 
 let bd = new Bd();
@@ -90,3 +115,11 @@ function cadastrarDespesa() {
     }
 }
 
+function carregaListaDespesas() {
+
+    let despesas = Array();
+
+    despesas = bd.recuperarTodosRegistros();
+
+    console.log(despesas);
+}
