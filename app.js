@@ -35,4 +35,4 @@ function cadastrarDespesa() {
 
 function gravar(d) { //recebendo objeto literal dentro da função
     localStorage.setItem('despesa', JSON.stringify(d));  //E precisamos transformar esse objeto em uma notação JSON 
-}
+}              //A função setItem contem um protocolo que vai abrir uma comunicação com o localStorage(Encaminhando um JSON)
